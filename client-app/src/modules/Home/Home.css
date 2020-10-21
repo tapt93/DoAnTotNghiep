@@ -1,0 +1,84 @@
+.home{
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;  
+}
+.home-container{
+  height: 100%;
+  width: 50%;
+  margin: 0 auto;
+}
+.home-item{
+  margin: 40px 0;
+}
+.quick-access{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.test-item{
+  background-image: url('../../assets/images/lession1.jpg');
+  background-position: center;
+  background-size: cover;
+  background-clip: border-box;
+
+  padding-top: 50px;
+  height: 300px;
+}
+.test-item .test-item-description{
+  font-size: 20px;
+  font-weight: 600;
+  display: block;
+
+  position: relative;
+  left: 20px;
+}
+.quick-access-item{
+  width: 30%;
+  height: 200px;
+  box-shadow: 0 7px 15px 0 rgba(58, 75, 205, .33);
+  
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #fff;  
+  cursor: pointer;
+
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  transition: transform 0.5s ease 0.05s;
+}
+
+.quick-access-item:hover{
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 700px) {
+  .home-container {
+    width: 90%;
+  }
+  .quick-access-item{
+    width: 60%;
+  }
+  .home{
+    overflow: auto;
+  }
+}
+@media screen and (max-width: 900px) {
+  .home-container {
+    width: 85%;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .home-container {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 1500px) {
+  .home-container {
+    width: 75%;
+  }
+}

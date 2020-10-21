@@ -1,6 +1,6 @@
 import { Button, Form, Input } from 'antd';
 import React, { useState } from 'react';
-import { Redirect } from 'react-router';
+import { Redirect, useHistory, useLocation } from 'react-router-dom';
 import Notification from '../../common/components/Notification';
 import { validateEmail } from '../../common/utility';
 import UserApi from '../../services/UserApi';
@@ -10,6 +10,7 @@ const { Item } = Form;
 export function Register() {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  let history = useHistory();
 
   async function onSubmit(values) {
     setLoading(true);
@@ -18,7 +19,9 @@ export function Register() {
       setLoading(false);
       if (res.status === 200 && res.data) {
         Notification.success("Create account successfully");
-        return <Redirect to='/login' />;
+        history.push('/login');
+        window.location.reload();
+        return;
       }
       else {
         Notification.error(res.message);

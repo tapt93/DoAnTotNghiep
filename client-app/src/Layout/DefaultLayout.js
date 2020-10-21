@@ -33,7 +33,7 @@ function DefaultLayout(props) {
     <>
       <AppContext.Provider value={{ userInfo: user }}>
         <Layout className="custom-layout">
-          <Header style={{ background: "#fff", padding: 0 }}>
+          <Header className="header">
             <DefaultHeader
               useSuspense={false}
               user={user} />
@@ -59,7 +59,7 @@ function DefaultLayout(props) {
             ) : <Spin style={{ marginLeft: "24px", marginTop: "20px" }} />}
           </Content>
           <Footer className="default-footer">
-            <DefaultFooter useSuspense={false} />
+            {/* <DefaultFooter useSuspense={false} /> */}
           </Footer>
         </Layout>
       </AppContext.Provider>

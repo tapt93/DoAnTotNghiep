@@ -1,13 +1,36 @@
 .default-header{
   font-size: 15px;
-  background-color: white;
   width: 100%;
   padding-right: 10px;
 }
-.default-header-icon, .default-header-text{
-  color: #888;
+.default-header-left{
+  float: left;
+  padding-top: 0;
+  box-sizing: content-box;
 }
-
+.default-header-left h3{
+  color: #fff;
+  text-transform: uppercase;
+}
+.default-header-left a{
+  position: absolute;
+  margin-left: 10px;
+  left: 105px;
+}
+.default-header-left img{
+  height: 64px;
+  margin: 0;
+  position: absolute;
+}
+.default-header-right{
+  float: right;
+}
+.default-header-icon, .default-header-text{
+  color: #fff;
+}
+.default-header-user-menu button{
+  padding-left: 0;
+}
 .default-header-text{
   padding-right: 15px;
 }
@@ -20,4 +43,9 @@
 .default-footer.ant-layout-footer{
   padding: 0px !important;
   background: white;
+}
+.custom-layout .header{
+  background: #139595;
+  padding: 0;
+  position: relative;
 }

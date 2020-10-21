@@ -1,4 +1,3 @@
-import App from "./App";
 import LazyLoad from "./common/LazyLoad";
 
 const NotFound = LazyLoad(() =>
@@ -21,8 +20,12 @@ const ForgotPassword = LazyLoad(() =>
   import('./modules/Login/ForgotPassword')
 );
 
+const Home = LazyLoad(() =>
+  import('./modules/Home/Home')
+);
+
 const routes = [
-  { path: '/', exact: true, render: App },
+  { path: '/', exact: true, render: Home },
   { path: '/Login', exact: true, render: Login },
   { path: '/Register', exact: true, render: Register },
   { path: '/ForgotPassword', exact: true, render: ForgotPassword },
