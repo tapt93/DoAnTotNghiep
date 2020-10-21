@@ -1,0 +1,47 @@
+.login-form{
+  margin: 0 auto;   
+  padding: 20px;
+
+  max-width: 400px;
+  height: max-content;
+
+  z-index: 100;  
+  background-color: white;
+}
+
+.login-icon{
+  color: rgba(0,0,0,.25)
+}
+.login-wrapper{
+  padding-top: 200px;
+  height: 100vh;
+
+  background-image: url("../../assets/images/BB-lisboa-d.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.login-form-button{
+  width: 100%;
+}
+.login-header{
+  font-size: large;
+  text-align: center;
+  font-weight: 900;
+  color: white;
+
+  height: 40px;
+  background: linear-gradient(90deg,#006300,#f70000);  
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-title{
+  text-align: center;
+  font-size: 24px;
+  padding: 10px;
+}
+.login-form a:first-child button{
+  padding-left: 0;
+}
