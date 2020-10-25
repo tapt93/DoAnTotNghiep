@@ -36,6 +36,15 @@ const TemplateApi = {
       console.log(error);
     }
   },
+
+  createTemplate: async item => {
+    try {
+      let result = await BaseApi.execute_post('/api/Template/CreateTemplate', item);
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default TemplateApi

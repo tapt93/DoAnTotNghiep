@@ -6,5 +6,6 @@
         public int Duration { get; set; }
         public int Level { get; set; }
         public decimal PassScore { get; set; }
+        public string Skill { get; set; }
     }
 }

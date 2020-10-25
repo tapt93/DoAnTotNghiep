@@ -1,0 +1,49 @@
+.create-test-form-container{
+  width: 100%;
+  height: 100%;
+
+  padding-top: 20px;
+  overflow: auto;  
+}
+.create-test-form-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.answer-item-wrapper{
+  width: calc(100% - 50px);
+  float: right;
+  margin-bottom: 10px;
+}
+.question-item-wrapper{
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+.question-item-wrapper:first-child{
+  margin-top: 0;
+}
+.create-test-form-wrapper .ant-form-item label{
+  font-weight: 600;
+}
+.form-title{
+  text-align: center;
+  text-transform: uppercase;
+}
+.create-test-form-wrapper .btn-submit{
+  width: 300px;
+  height: 40px;
+  font-size: large;
+}
+.create-test-form{
+  width: 50%;
+}
+.create-test-form .ant-form-item-label > label.ant-form-item-required::after{
+  content: '*';
+  color: red;
+  display: inline-block;
+  margin-left: 4px;
+}
+.create-test-form .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before{
+  display: none;
+}

@@ -24,11 +24,17 @@ const Home = LazyLoad(() =>
   import('./modules/Home/Home')
 );
 
+const CreateTest = LazyLoad(() =>
+  import('./modules/CreateTest/CreateTest')
+);
+
 const routes = [
   { path: '/', exact: true, render: Home },
   { path: '/Login', exact: true, render: Login },
   { path: '/Register', exact: true, render: Register },
   { path: '/ForgotPassword', exact: true, render: ForgotPassword },
+  { path: '/CreateTest', exact: true, render: CreateTest },
+
   { path: '/NotFound', exact: true, render: NotFound },
   { path: '/AccessDenied', exact: true, render: AccessDenied },
   { path: '*', exact: true, render: NotFound },

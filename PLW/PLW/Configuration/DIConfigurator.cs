@@ -13,6 +13,9 @@ namespace PLW.Api.Configuration
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserBLService, UserBLService>();
+
+            services.AddScoped<ITemplateBLService, TemplateBLService>();
+            services.AddScoped<ITemplateService, TemplateService>();
         }
     }
 }
