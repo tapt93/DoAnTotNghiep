@@ -5,6 +5,8 @@ using Microsoft.Extensions.Options;
 using PLW.Data.Entity;
 using PLW.Data.IService;
 using PLW.Data.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PLW.Data.Service
 {
@@ -18,6 +20,29 @@ namespace PLW.Data.Service
         {
             _appConfig = AppConfig.Value;
             _connString = configuration.GetConnectionString(_appConfig.ConnectionName);
+        }
+
+        public IList<QuestionModel> GetListQuestionByTemplateId(int templateId)
+        {
+            try
+            {
+                var result = from q in dc.Question
+                             where q.TemplateId == templateId
+                             select new QuestionModel
+                             {
+                                 Content = q.Content,
+                                 ID = q.ID,
+                                 Title = q.Title,
+                                 TemplateId = q.TemplateId,
+                                 AnswerId = q.AnswerId
+                             };
+                return result.ToList();
+            }
+            catch (System.Exception ex)
+            {
+
+                throw;
+            }
         }
     }
 }

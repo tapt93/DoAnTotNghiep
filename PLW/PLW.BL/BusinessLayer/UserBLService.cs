@@ -21,5 +21,10 @@ namespace PLW.BL.BusinessLayer
         {
             return _UserService.CheckUserLogin(account, password);
         }
+
+        public User GetCurrentUserInfo(string account)
+        {
+            return _UserService.Get(c => c.Account == account)?[0];
+        }
     }
 }

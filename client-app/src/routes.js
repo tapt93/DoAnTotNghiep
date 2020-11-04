@@ -28,13 +28,17 @@ const CreateTest = LazyLoad(() =>
   import('./modules/CreateTest/CreateTest')
 );
 
+const Test = LazyLoad(() =>
+  import('./modules/DoTest/Test')
+);
+
 const routes = [
   { path: '/', exact: true, render: Home },
   { path: '/Login', exact: true, render: Login },
   { path: '/Register', exact: true, render: Register },
   { path: '/ForgotPassword', exact: true, render: ForgotPassword },
   { path: '/CreateTest', exact: true, render: CreateTest },
-
+  { path: '/Test', exact: true, render: Test },
   { path: '/NotFound', exact: true, render: NotFound },
   { path: '/AccessDenied', exact: true, render: AccessDenied },
   { path: '*', exact: true, render: NotFound },

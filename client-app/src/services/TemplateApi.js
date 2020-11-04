@@ -44,7 +44,16 @@ const TemplateApi = {
     } catch (error) {
       console.log(error);
     }
-  }
+  },
+
+  GetTemplateForTest: async templateId => {
+    try {
+      let result = await BaseApi.execute_get('/api/Template/GetTemplateForTest?templateId=' + templateId);
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
+  },
 }
 
 export default TemplateApi

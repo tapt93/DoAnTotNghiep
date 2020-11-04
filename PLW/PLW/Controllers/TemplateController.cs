@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Web.Http;
 using Framework.Common.ApiResult;
 using Framework.Common.Helpers;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PLW.BL.IBusinessLayer;
 using PLW.Data.Model;
@@ -10,7 +9,7 @@ using PLW.Data.Model;
 namespace PLW.Api.Controllers
 {
     [Route("api/[controller]/[action]")]
-    [Authorize]
+    //[Authorize]
     [ApiController]
     public class TemplateController : ControllerBase
     {
@@ -19,11 +18,14 @@ namespace PLW.Api.Controllers
         {
             _TemplateBLService = TemplateBLService;
         }
+
+        [HttpPost]
         public ApiResult CreateTemplate(TemplateModel model)
-        {
-            var currentUser = HttpContext.User.Identity.GetUserAccount();
+        {            
             try
             {
+                
+                _TemplateBLService.CreateTemplate(model);
                 return new ApiResult
                 {
                     Status = HttpStatus.OK
@@ -37,6 +39,29 @@ namespace PLW.Api.Controllers
                     Message = ex.Message
                 };
             }
+        }
+
+        [HttpGet]
+        public ApiResult GetTemplateForTest(int templateId)
+        {
+            try
+            {
+                var result = _TemplateBLService.GetTemplateForTest(templateId);
+                return new ApiResult
+                {
+                    Status = HttpStatus.OK,
+                    Data = result
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ApiResult()
+                {
+                    Status = HttpStatus.InteralError,
+                    Message = ex.Message
+                };
+            }
+            
         }
     }
 }

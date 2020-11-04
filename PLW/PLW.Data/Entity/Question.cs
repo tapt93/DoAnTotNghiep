@@ -5,5 +5,6 @@
         public string Title { get; set; }
         public string Content { get; set; }
         public int AnswerId { get; set; }
+        public int TemplateId { get; set; }
     }
 }

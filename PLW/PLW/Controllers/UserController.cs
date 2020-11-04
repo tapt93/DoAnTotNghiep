@@ -108,28 +108,28 @@ namespace PLW.Api.Controllers
         //    }
         //}
 
-        //[HttpGet]
-        //public ApiResult GetCurrentUserInfo()
-        //{
-        //    try
-        //    {
-        //        var currentUser = User.FindFirstValue(ClaimTypes.Name);
-        //        var result = _UsersBLService.GetCurrentUserInfo(currentUser);
-        //        return new ApiResult()
-        //        {
-        //            Status = HttpStatus.OK,
-        //            Data = result
-        //        };
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new ApiResult()
-        //        {
-        //            Status = HttpStatus.InteralError,
-        //            Message = ex.Message
-        //        };
-        //    }
-        //}
+        [HttpGet]
+        public ApiResult GetCurrentUserInfo()
+        {
+            try
+            {
+                var currentUser = User.FindFirstValue(ClaimTypes.Name);
+                var result = _UserBLService.GetCurrentUserInfo("anhnt141");
+                return new ApiResult()
+                {
+                    Status = HttpStatus.OK,
+                    Data = result
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ApiResult()
+                {
+                    Status = HttpStatus.InteralError,
+                    Message = ex.Message
+                };
+            }
+        }
 
         //[HttpPost]
         //public ApiResult UserChangePassword(ChangePasswordModel model)

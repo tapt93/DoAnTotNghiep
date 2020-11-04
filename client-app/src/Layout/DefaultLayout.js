@@ -6,6 +6,7 @@ import routes from "../routes";
 import { Route, Switch } from "react-router-dom";
 import DefaultHeader from "./DefaultHeader";
 import './Layout.css'
+import UserApi from "../services/UserApi";
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -18,11 +19,10 @@ function DefaultLayout(props) {
   }, [])
 
   async function getUserInfo() {
-    //var res = await UserApi.getCurrentUserInfo("mfb.vn");
-    // if (res && res.status === 200) {
-    //   setUser(res.data)
-    // }
-    setUser({})
+    var res = await UserApi.getCurrentUserInfo();
+    if (res && res.status === 200) {
+      setUser(res.data)
+    }
   }
 
   var screenPermistions = undefined;

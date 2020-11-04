@@ -6,5 +6,6 @@ namespace PLW.BL.IBusinessLayer
     {
         string RegisterUser(User model);
         bool CheckUserLogin(string account, string password);
+        User GetCurrentUserInfo(string account);
     }
 }

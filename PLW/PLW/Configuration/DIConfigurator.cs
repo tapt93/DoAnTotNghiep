@@ -16,6 +16,15 @@ namespace PLW.Api.Configuration
 
             services.AddScoped<ITemplateBLService, TemplateBLService>();
             services.AddScoped<ITemplateService, TemplateService>();
+
+            services.AddScoped<IQuestionBLService, QuestionBLService>();
+            services.AddScoped<IQuestionService, QuestionService>();
+
+            services.AddScoped<IAnswerBLService, AnswerBLService>();
+            services.AddScoped<IAnswerService, AnswerService>();
+
+            services.AddScoped<IResultBLService, ResultBLService>();
+            services.AddScoped<IResultService, ResultService>();
         }
     }
 }

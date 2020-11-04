@@ -28,7 +28,7 @@ function DefaultHeader(props) {
         </div>
         <div className="default-header-right">
           <span className="default-header-text">
-            Xin chào, Nguyen Tuan Anh{props.user ? props.user.fullName : 'Nguyen Tuan Anh'}
+            Xin chào, {props.user ? props.user.account : ''}
           </span>
 
           <Dropdown overlay={
