@@ -66,7 +66,8 @@ namespace PLW.BL.BusinessLayer
                 Duration = template.Duration,
                 PassScore = template.PassScore,
                 Level = template.Level,
-                Skill = template.Skill
+                Skill = template.Skill,
+                ID = templateId
             };
 
             var questions = _QuestionService.GetListQuestionByTemplateId(templateId).ToList();
@@ -77,6 +78,11 @@ namespace PLW.BL.BusinessLayer
             }
             templateModel.Questions = questions;
             return templateModel;
+        }
+
+        public IList<TemplateViewModel> ListAll(TemplateSearchModel model)
+        {
+            return _TemplateService.ListAll(model);
         }
     }
 }

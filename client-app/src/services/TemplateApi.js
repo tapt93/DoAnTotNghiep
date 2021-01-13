@@ -54,6 +54,15 @@ const TemplateApi = {
       console.log(error);
     }
   },
+
+  ListAll: async model => {
+    try {
+      let result = await BaseApi.execute_post('/api/Template/ListAll', model);
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default TemplateApi

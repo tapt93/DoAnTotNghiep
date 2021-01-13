@@ -17,6 +17,7 @@ using PLW.Data.Model;
 namespace PLW.Api.Controllers
 {
     [Route("api/[controller]/[action]")]
+    [Authorize]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -31,8 +32,8 @@ namespace PLW.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("auth")]
-        public async Task<ApiResult> Authenticate([FromBody]LoginModel model)
+        [HttpPost]
+        public ApiResult Authenticate([FromBody]LoginModel model)
         {
 
             bool checkUserLogin = _UserBLService.CheckUserLogin(model.Username, model.Password);
@@ -114,7 +115,7 @@ namespace PLW.Api.Controllers
             try
             {
                 var currentUser = User.FindFirstValue(ClaimTypes.Name);
-                var result = _UserBLService.GetCurrentUserInfo("anhnt141");
+                var result = _UserBLService.GetCurrentUserInfo(currentUser);
                 return new ApiResult()
                 {
                     Status = HttpStatus.OK,

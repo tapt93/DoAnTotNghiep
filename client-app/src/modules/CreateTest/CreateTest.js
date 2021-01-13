@@ -3,6 +3,8 @@ import React, { useRef, useState } from 'react'
 import './CreateTest.css'
 import { CloseOutlined, PlusOutlined, MinusCircleOutlined } from '@ant-design/icons'
 import TemplateApi from '../../services/TemplateApi';
+import Notification from '../../common/components/Notification';
+import { useHistory } from 'react-router';
 
 const { Item } = Form;
 const { Option } = Select;
@@ -10,6 +12,7 @@ export default function CreateTest() {
   const [form] = Form.useForm();
   const [skill, setSkill] = useState('');
   const [answerCorrectMap, setAnswerCorrectMap] = useState([]);
+  let history = useHistory();
 
   function onChangeQuestionValue(value, index) {
     var questions = form.getFieldValue('questions');
@@ -23,7 +26,7 @@ export default function CreateTest() {
     let ansIndex = +indexes[1];
     var questions = form.getFieldValue('questions');
     var answers = questions[quesIndex].answers;
-    for(let i = 0; i < answers.length; i++){
+    for (let i = 0; i < answers.length; i++) {
       answers[i].isCorrect = false;
     }
     answers[ansIndex].isCorrect = true;
@@ -31,7 +34,16 @@ export default function CreateTest() {
   }
 
   function onSubmitForm(values) {
-    TemplateApi.createTemplate(values);
+    TemplateApi.createTemplate(values)
+      .then(res => {
+        if (res.status === 200) {
+          Notification.success('Create template successfully');
+          history.push('/')
+        }
+        else {
+          Notification.error(res.message)
+        }
+      })
   }
 
   return (
@@ -59,17 +71,16 @@ export default function CreateTest() {
               <Select onChange={value => setSkill(value)}>
                 <Option value="reading">Đọc</Option>
                 <Option value="writing">Viết</Option>
-                <Option value="listening">Nghe</Option>
               </Select>
             </Item>
             <Item label="Thời gian thi">
               <Item
                 required
-                name="duration"                
+                name="duration"
                 rules={[{ required: true, message: 'Nhập thời gian thi' }]}
                 noStyle
               >
-                <InputNumber />
+                <InputNumber min={0} />
               </Item>
               <span> phút</span>
             </Item>

@@ -20,8 +20,8 @@ export default function Login() {
     AuthenApi.login(values)
       .then(res => {
         setLoading(false);
-        if (res && res.access_token) {
-          localStorage.setItem(process.env.REACT_APP_Token_Name, JSON.stringify(res));
+        if (res && res.data) {
+          localStorage.setItem(process.env.REACT_APP_Token_Name, JSON.stringify(res.data));
           context.onLogin();
           history.push('/');
         } else {
@@ -39,7 +39,7 @@ export default function Login() {
   }
 
   return (
-    <LayoutLogin title="Sign in">
+    <LayoutLogin title="LOGIN">
       <Form form={form} onFinish={handleSubmit} >
         <Item name="username"
           rules={[
@@ -73,14 +73,14 @@ export default function Login() {
             className="login-form-button"
             loading={loading}
           >
-            Log in
+            Conecte-se
           </Button>
           <div>
             <a href="/ForgotPassword">
-              <Button type="link">Forgot password?</Button>
+              <Button type="link">Esqueceu a senha?</Button>
             </a>
             <a href="/Register">
-              <Button type="link">Create account</Button>
+              <Button type="link">Novo registo</Button>
             </a>
           </div>
         </Item>

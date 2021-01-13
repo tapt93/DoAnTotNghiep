@@ -16,12 +16,12 @@ instance.interceptors.response.use(response => {
 })
 
 instance.interceptors.request.use(request => {
-  let currentUser = null
-  if (localStorage.getItem('plw-current-user')) {
-    currentUser = JSON.parse(localStorage.getItem('plw-current-user'));
+  let token = null
+  if (localStorage.getItem(process.env.REACT_APP_Token_Name)) {
+    token = JSON.parse(localStorage.getItem(process.env.REACT_APP_Token_Name));
   }
-  if (currentUser && currentUser.token) {
-    request.headers['Authorization'] = `Bearer ${currentUser.token}`;
+  if (token) {
+    request.headers['Authorization'] = `Bearer ${token}`;
 
   }
   return request;
@@ -33,16 +33,9 @@ instance.interceptors.request.use(request => {
 
 export const AuthenApi = {
   login: async (model) => {
-    return await instance.post(baseAutURL, queryString.stringify({
+    return await instance.post(baseAutURL, {
       username: model.username,
-      password: model.password,
-      client_id: 'ro.client',
-      client_secret: 'secret',
-      grant_type: "password"
-    }), {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      }
+      password: model.password
     })
   }
 }

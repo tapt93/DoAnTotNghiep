@@ -5,12 +5,12 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(request => {
-  let currentUser = null
+  let token = null
   if (localStorage.getItem(process.env.REACT_APP_Token_Name)) {
-    currentUser = JSON.parse(localStorage.getItem(process.env.REACT_APP_Token_Name));
+    token = JSON.parse(localStorage.getItem(process.env.REACT_APP_Token_Name));
   }
-  if (currentUser && currentUser.access_token) {
-    request.headers['Authorization'] = `Bearer ${currentUser.access_token}`;
+  if (token) {
+    request.headers['Authorization'] = `Bearer ${token}`;
   }
   return request;
 }, error => {

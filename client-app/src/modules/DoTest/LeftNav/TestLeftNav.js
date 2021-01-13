@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import { UserOutlined, CalendarOutlined, ClockCircleOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 import moment from 'moment'
 import { HashLink as Link } from 'react-router-hash-link';
+import { Button } from 'antd';
 
-export default function TestLeftNav({ template, currentUser, listViewQuestion }) {
+export default function TestLeftNav({ template, currentUser, listViewQuestion, onFinishTest }) {
   const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(0);
   const [date, setDate] = useState(moment());
@@ -34,6 +35,12 @@ export default function TestLeftNav({ template, currentUser, listViewQuestion })
     };
   });
 
+  useEffect(() => {
+    if (minutes === 0 && seconds === 0) {
+      onFinishTest();
+    }
+  }, [minutes, seconds])
+
   function formatNumber(number) {
     return number.toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false });
   }
@@ -57,7 +64,7 @@ export default function TestLeftNav({ template, currentUser, listViewQuestion })
         </div>
       </div>
       <div className="left-nav-item">
-        <UserOutlined className="icon" /> <span>Thí sinh: {currentUser}</span>
+        <UserOutlined className="icon" /> <span>Thí sinh: <b>{currentUser.toUpperCase()}</b></span>
       </div>
       <div className="left-nav-item">
         <CalendarOutlined className="icon" /> <span>Ngày thi: {date.format('DD-MM-yyyy HH:mm')}</span>
@@ -68,13 +75,16 @@ export default function TestLeftNav({ template, currentUser, listViewQuestion })
       <div className="left-nav-item">
         <QuestionCircleOutlined className="icon" /> <span>Số lượng câu hỏi: {(template.questions || []).length}</span>
       </div>
+      <div className="left-nav-item" style={{ display: 'flex', justifyContent: 'center' }}>
+        <Button onClick={onFinishTest} style={{ width: '80%' }} type="primary">Kết thúc bài thi</Button>
+      </div>
       <div className="left-nav-item" style={{ flexDirection: 'column' }}>
         <div>
           <div style={{ width: 20, height: 20, background: 'green', float: 'left' }}></div>
           <span style={{ float: 'left', marginLeft: 5 }}>Câu hỏi đã trả lời</span>
         </div>
         <div style={{ marginTop: 5 }}>
-          <div style={{ width: 20, height: 20, background: '#a2a2a2', float: 'left' }}></div>
+          <div style={{ width: 20, height: 20, background: '#c2c2c2', float: 'left' }}></div>
           <span style={{ float: 'left', marginLeft: 5 }}>Câu hỏi chưa trả lời</span>
         </div>
       </div>

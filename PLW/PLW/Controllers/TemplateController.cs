@@ -4,12 +4,13 @@ using Framework.Common.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PLW.BL.IBusinessLayer;
+using PLW.Data.Entity;
 using PLW.Data.Model;
 
 namespace PLW.Api.Controllers
 {
     [Route("api/[controller]/[action]")]
-    //[Authorize]
+    [Authorize]
     [ApiController]
     public class TemplateController : ControllerBase
     {
@@ -61,7 +62,32 @@ namespace PLW.Api.Controllers
                     Message = ex.Message
                 };
             }
-            
+        }
+
+        [HttpPost]
+        public ApiResult ListAll(TemplateSearchModel model)
+        {
+            try
+            {
+                var result = _TemplateBLService.ListAll(model);
+                return new ApiResult
+                {
+                    Status = HttpStatus.OK,
+                    Data = new
+                    {
+                        list = result,
+                        model.Paging
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ApiResult()
+                {
+                    Status = HttpStatus.InteralError,
+                    Message = ex.Message
+                };
+            }
         }
     }
 }

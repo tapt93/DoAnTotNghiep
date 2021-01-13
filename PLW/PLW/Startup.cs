@@ -1,4 +1,5 @@
 using Framework.Common.JWT;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -6,9 +7,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using PLW.Api.Configuration;
 using PLW.Data.Entity;
 using PLW.Data.Model;
+using System;
+using System.Text;
 
 namespace PLW
 {
@@ -42,13 +46,37 @@ namespace PLW
             });
 
             //Configure jwt authentication
-            services.AddAuthentication("Bearer")
-                   .AddIdentityServerAuthentication(options =>
-                   {
-                       options.Authority = JwtSettings.Issuer;
-                       options.RequireHttpsMetadata = false;
-                       options.ApiName = JwtSettings.ApiName;
-                   });
+            //services.AddAuthentication("Bearer")
+            //       .AddIdentityServerAuthentication(options =>
+            //       {
+            //           options.Authority = JwtSettings.Issuer;
+            //           options.RequireHttpsMetadata = false;
+            //           options.ApiName = JwtSettings.ApiName;
+            //       });
+            var appSettingsSection = Configuration.GetSection("JwtSettings");
+            services.Configure<JwtSettings>(appSettingsSection);
+            var appSettings = appSettingsSection.Get<JwtSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.SecurityKey);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    LifetimeValidator = CustomLifetimeValidator,
+                    ValidateIssuer = false,
+                    RequireExpirationTime = true,
+                    ValidateAudience = false
+                };
+            });
 
             // configure DI for application services
             services.AddScoped<IJwtTokenManager, JwtTokenManager>();
@@ -84,12 +112,23 @@ namespace PLW
                 .AllowAnyMethod()
                 .AllowAnyHeader());
 
+            app.UseAuthentication();
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private bool CustomLifetimeValidator(DateTime? notBefore, DateTime? expires, SecurityToken tokenToValidate, TokenValidationParameters @param)
+        {
+            if (expires != null)
+            {
+                return expires > DateTime.UtcNow;
+            }
+            return false;
         }
     }
 }

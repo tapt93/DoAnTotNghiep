@@ -2,9 +2,9 @@ import { Radio } from 'antd'
 import React from 'react'
 
 export default function TestBody({ template, onSelectAnswer }) {
-  function onChangeAnswer(questIndex) {
+  function onChangeAnswer(questIndex, isCorrect) {
     if (onSelectAnswer) {
-      onSelectAnswer(questIndex);
+      onSelectAnswer(questIndex, isCorrect);
     }
   }
 
@@ -23,11 +23,12 @@ export default function TestBody({ template, onSelectAnswer }) {
               <span>{q.content}</span>
             </div>
             <div className="question-answers">
-              <Radio.Group onChange={() => onChangeAnswer(i)}>
+              <Radio.Group>
                 {q.answers.map((a, j) => (
                   <Radio
                     style={{ width: '100%', margin: '4px 15px' }}
                     value={a.id}
+                    onClick={() => onChangeAnswer(i, a.isCorrect)}
                     key={`${i}_${j}`}
                   >
                     {a.content}

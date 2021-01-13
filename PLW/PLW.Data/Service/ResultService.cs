@@ -5,6 +5,8 @@ using Microsoft.Extensions.Options;
 using PLW.Data.Entity;
 using PLW.Data.IService;
 using PLW.Data.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PLW.Data.Service
 {
@@ -18,6 +20,24 @@ namespace PLW.Data.Service
         {
             _appConfig = AppConfig.Value;
             _connString = configuration.GetConnectionString(_appConfig.ConnectionName);
+        }
+
+        public IList<ResultModel> GetResultsByAccount(string account)
+        {
+            var data = from result in dc.Result
+                       join template in dc.Template on result.TemplateId equals template.ID
+                       where result.Account.ToLower() == account.ToLower()
+                       select new ResultModel
+                       {
+                           Account = result.Account,
+                           Created = result.Created,
+                           ID = result.ID,
+                           Score = result.Score,
+                           TemplateId = result.TemplateId,
+                           Updated = result.Updated,
+                           TestName = template.Content
+                       };
+            return data.ToList();
         }
     }
 }

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Menu, Row, Dropdown, Button } from 'antd';
-import { AuthContext } from '../context';
+import { AppContext, AuthContext } from '../context';
 import { SettingOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons'
 import { useHistory } from 'react-router';
 import PTFlag from '../assets/images/flag_of_portugal-svg_-1024x682.png'
@@ -23,12 +23,19 @@ function DefaultHeader(props) {
         <div className="default-header-left">
           <img src={PTFlag} />
           <a href="/">
-            <h3>Learning portuguese</h3>
+            <h3>Aprender português</h3>
           </a>
         </div>
         <div className="default-header-right">
+          {props.user && props.user.isAdmin &&
+            <span className="default-header-text" style={{ marginRight: 100 }}>
+              <Button type="link" style={{ textDecoration: 'none', color: 'white' }}>
+                <b>Gerenciamento de teste</b>
+              </Button>
+            </span>
+          }
           <span className="default-header-text">
-            Xin chào, {props.user ? props.user.account : ''}
+            Olá, {props.user ? props.user.account : ''}
           </span>
 
           <Dropdown overlay={
@@ -36,13 +43,13 @@ function DefaultHeader(props) {
               <Menu.Item>
                 <Button type="link" onClick={onProfileSetting}>
                   <SettingOutlined className="default-header-menu-icon" />
-                  <span style={{ color: "#888" }}>Tài khoản</span>
+                  <span style={{ color: "#888" }}>Usuário</span>
                 </Button>
               </Menu.Item>
               <Menu.Item>
                 <Button type="link" onClick={onLogout} className="logout-button">
                   <LogoutOutlined className="default-header-menu-icon" />
-                  <span style={{ color: "#888" }}>Đăng xuất</span>
+                  <span style={{ color: "#888" }}>Sair</span>
                 </Button>
               </Menu.Item>
             </Menu>}

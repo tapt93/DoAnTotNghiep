@@ -1,9 +1,9 @@
 import BaseApi from './BaseApi';
 
 const ResultApi = {
-  list: async filter => {
+  getResultsByAccount: async account => {
     try {
-      let result = await BaseApi.execute_post('/api/Result/list', filter);
+      let result = await BaseApi.execute_get('/api/Result/GetResultsByAccount?account=' + account);
       return result;
     } catch (error) {
       console.error(error);

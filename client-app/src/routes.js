@@ -32,13 +32,25 @@ const Test = LazyLoad(() =>
   import('./modules/DoTest/Test')
 );
 
+const TestList = LazyLoad(() =>
+  import('./modules/TestList/TestList')
+);
+
+const MyResult = LazyLoad(() =>
+  import('./modules/MyResult/MyResult')
+);
+
+
 const routes = [
   { path: '/', exact: true, render: Home },
   { path: '/Login', exact: true, render: Login },
   { path: '/Register', exact: true, render: Register },
   { path: '/ForgotPassword', exact: true, render: ForgotPassword },
   { path: '/CreateTest', exact: true, render: CreateTest },
+  { path: '/TestList', exact: true, render: TestList },
+  { path: '/MyResult', exact: true, render: MyResult },
   { path: '/Test', exact: true, render: Test },
+  { path: '/Test/:id', exact: true, render: Test },
   { path: '/NotFound', exact: true, render: NotFound },
   { path: '/AccessDenied', exact: true, render: AccessDenied },
   { path: '*', exact: true, render: NotFound },

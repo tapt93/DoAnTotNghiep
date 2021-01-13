@@ -1,26 +1,28 @@
 import { Button } from 'antd'
 import React from 'react'
+import { useHistory } from 'react-router'
 import './Home.css'
 
 export default function Home() {
+  let history = useHistory();
   return (
     <div className="home">
       <div className="home-container">
         <div className="home-item quick-access">
           <div className="quick-access-item">
-            Vocabulary
+            Vocabulário
         </div>
           <div className="quick-access-item">
-            Grammar
+            Grammática
         </div>
           <div className="quick-access-item">
-            Verb
+            Verbo
         </div>
         </div>
         <div className="home-item">
           <div className="test-item">
-            <span className="test-item-description">Online portuguese test</span>
-            <Button style={{margin: 20}}>Do it now!</Button>
+            <span className="test-item-description">Online português teste</span>
+            <Button style={{margin: 20}} onClick={()=>history.push('/TestList')}>Faz test agora!</Button>
           </div>
         </div>
       </div>

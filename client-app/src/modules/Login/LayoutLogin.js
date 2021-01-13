@@ -5,7 +5,7 @@ export default function LayoutLogin({ title, children }) {
     <div className="login-wrapper">
       <div className="login-form">
         <div className="login-header">
-          <span>Learning Portuguese</span>
+          <span>Aprender português</span>
         </div>
         <div className="login-title">
           <span>{title}</span>

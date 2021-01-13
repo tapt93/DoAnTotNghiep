@@ -24,15 +24,16 @@ function App() {
     let access_token = null;
     const currentUser = localStorage.getItem(process.env.REACT_APP_Token_Name);
     if (currentUser) {
-      let user = JSON.parse(currentUser);
-      if (user.access_token) {
-        access_token = user.access_token;
+      let token = JSON.parse(currentUser);
+      if (token) {
+        access_token = token;
       }
     }
     return access_token;
   }
   function getContent(isAuth) {
     const pathname = window.location.pathname;
+  
     if (isAuth) {
       return <DefaultLayout />;
     }

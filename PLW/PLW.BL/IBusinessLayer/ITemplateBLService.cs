@@ -1,4 +1,5 @@
 ﻿using PLW.Data.Model;
+using System.Collections.Generic;
 
 namespace PLW.BL.IBusinessLayer
 {
@@ -6,5 +7,6 @@ namespace PLW.BL.IBusinessLayer
     {
         void CreateTemplate(TemplateModel model);
         TemplateModel GetTemplateForTest(int templateId);
+        IList<TemplateViewModel> ListAll(TemplateSearchModel model);
     }
 }
