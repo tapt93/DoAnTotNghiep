@@ -35,7 +35,26 @@ namespace PLW.Data.Service
                            Score = result.Score,
                            TemplateId = result.TemplateId,
                            Updated = result.Updated,
-                           TestName = template.Content
+                           TestName = template.Content,
+                           Skill = template.Skill
+                       };
+            return data.ToList();
+        }
+
+        public IList<ResultModel> GetResultReport()
+        {
+            var data = from result in dc.Result
+                       join template in dc.Template
+                       on result.TemplateId equals template.ID
+                       select new ResultModel
+                       {
+                           Account = result.Account,
+                           Created = result.Created,
+                           Score = result.Score,
+                           ID = result.ID,
+                           TemplateId = result.TemplateId,
+                           TestName = template.Content,
+                           Skill = template.Skill
                        };
             return data.ToList();
         }

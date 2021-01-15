@@ -34,10 +34,18 @@ export default function TestListTable({ data, showDetail }) {
       title: 'Duration',
       dataIndex: 'duration'
     },
-    // {
-    //   title: 'Created by',
-    //   dataIndex: 'createdBy'
-    // },
+    {
+      title: 'Quantity done',
+      dataIndex: 'quantityDone'
+    },
+    {
+      title: 'Max score',
+      dataIndex: 'maxScore'
+    },
+    {
+      title: 'Min score',
+      dataIndex: 'minScore'
+    },
     {
       title: '',
       dataIndex: 'id',

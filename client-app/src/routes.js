@@ -37,7 +37,11 @@ const TestList = LazyLoad(() =>
 );
 
 const MyResult = LazyLoad(() =>
-  import('./modules/MyResult/MyResult')
+  import('./modules/Report/ReportResult')
+);
+
+const AllReport = LazyLoad(() =>
+  import('./modules/Report/ReportAllResult')
 );
 
 
@@ -46,6 +50,8 @@ const routes = [
   { path: '/Login', exact: true, render: Login },
   { path: '/Register', exact: true, render: Register },
   { path: '/ForgotPassword', exact: true, render: ForgotPassword },
+  { path: '/MyReport', exact: true, render: MyResult },
+  { path: '/AllReport', exact: true, render: AllReport },
   { path: '/CreateTest', exact: true, render: CreateTest },
   { path: '/TestList', exact: true, render: TestList },
   { path: '/MyResult', exact: true, render: MyResult },

@@ -26,5 +26,9 @@ namespace PLW.BL.BusinessLayer
         {
             return _ResultService.GetResultsByAccount(account);
         }
+        public IList<ResultModel> GetResultReport()
+        {
+            return _ResultService.GetResultReport();
+        }
     }
 }

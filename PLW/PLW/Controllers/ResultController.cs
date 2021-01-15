@@ -59,5 +59,16 @@ namespace PLW.Api.Controllers
                 };
             }
         }
+
+        [HttpGet]
+        public ApiResult GetResultReport()
+        {
+            var result = _ResultBLService.GetResultReport();
+            return new ApiResult
+            {
+                Data = result,
+                Status = HttpStatus.OK
+            };
+        }
     }
 }

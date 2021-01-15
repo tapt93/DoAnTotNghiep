@@ -5,7 +5,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 import { Button } from 'antd';
 
 export default function TestLeftNav({ template, currentUser, listViewQuestion, onFinishTest }) {
-  const [minutes, setMinutes] = useState(1);
+  const [minutes, setMinutes] = useState(2);
   const [seconds, setSeconds] = useState(0);
   const [date, setDate] = useState(moment());
 

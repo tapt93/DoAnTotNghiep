@@ -28,12 +28,25 @@ function DefaultHeader(props) {
         </div>
         <div className="default-header-right">
           {props.user && props.user.isAdmin &&
-            <span className="default-header-text" style={{ marginRight: 100 }}>
-              <Button type="link" style={{ textDecoration: 'none', color: 'white' }}>
-                <b>Gerenciamento de teste</b>
-              </Button>
-            </span>
+            <>
+              <span className="default-header-text" style={{ marginRight: 100 }}>
+                <Button type="link" style={{ textDecoration: 'none', color: 'white' }}>
+                  <b>Gerenciamento de teste</b>
+                </Button>
+              </span>
+              <span className="default-header-text" style={{ marginRight: 100 }}>
+                <Button onClick={() => history.push('/AllReport')} type="link" style={{ textDecoration: 'none', color: 'white' }}>
+                  <b>Result Report</b>
+                </Button>
+              </span>
+            </>
           }
+          <span className="default-header-text" style={{ marginRight: 100 }}>
+            <Button onClick={() => history.push('/MyReport')} type="link" style={{ textDecoration: 'none', color: 'white' }}>
+              <b>My Report</b>
+            </Button>
+          </span>
+
           <span className="default-header-text">
             Olá, {props.user ? props.user.account : ''}
           </span>

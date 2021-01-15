@@ -36,6 +36,14 @@ const ResultApi = {
       console.log(error);
     }
   },
+  GetResultReport: async item => {
+    try {
+      let result = await BaseApi.execute_get('/api/Result/GetResultReport');
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
+  },
 }
 
 export default ResultApi

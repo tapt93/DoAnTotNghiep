@@ -8,5 +8,6 @@ namespace PLW.BL.IBusinessLayer
     {
         void Add(Result result);
         IList<ResultModel> GetResultsByAccount(string account);
+        public IList<ResultModel> GetResultReport();
     }
 }

@@ -38,6 +38,16 @@ export default function TestList() {
       if (res.status === 200 && res.data) {
         var newPaging = { ...res.data.paging };
         var list = res.data.list;
+        list.push({
+          content: 'Luyện đọc 2020',
+          skill: 'reading',
+          questionQuantity: 20,
+          passScore: 18,
+          duration: 90,
+          quantityDone: 17,
+          maxScore: 19,
+          minScore: 13
+        })
         var startNumber = newPaging.pageSize * (newPaging.currentPage - 1) + 1;
         list.forEach(c => c.stt = startNumber++);
         setPaging(newPaging);

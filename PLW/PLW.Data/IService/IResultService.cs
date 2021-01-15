@@ -8,5 +8,6 @@ namespace PLW.Data.IService
     public interface IResultService : IBaseService<Result, ApplicationDbContext>
     {
         IList<ResultModel> GetResultsByAccount(string account);
+        IList<ResultModel> GetResultReport();
     }
 }

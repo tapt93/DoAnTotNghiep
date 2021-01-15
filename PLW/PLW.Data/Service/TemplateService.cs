@@ -56,9 +56,18 @@ namespace PLW.Data.Service
                                QuestionQuantity = dc.Question.Where(c => c.TemplateId == template.ID).Count()
                            };
                 }
-               
-                model.Paging.RowsCount = list.Count();
-                return list.Skip(model.Paging.PageSize * (model.Paging.CurrentPage - 1)).Take(model.Paging.PageSize).ToList();
+                var result = list.ToList();
+                foreach (var item in result)
+                {
+                    var done = (from res in dc.Result
+                                where res.TemplateId == item.ID
+                                select res).ToList();
+                    item.QuantityDone = done.Count;
+                    item.MaxScore = done.Select(c => c.Score).Max();
+                    item.MinScore = done.Select(c => c.Score).Min();
+                }
+                //model.Paging.RowsCount = list.Count();
+                return result;// list.Skip(model.Paging.PageSize * (model.Paging.CurrentPage - 1)).Take(model.Paging.PageSize).ToList();
             }
             catch (System.Exception ex)
             {
