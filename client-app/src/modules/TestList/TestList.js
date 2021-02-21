@@ -83,7 +83,10 @@ export default function TestList() {
               </div>
             }
             <Row gutter={16}>
-              <Col lg={4} sm={12} md={6} xs={24}>
+              <Col lg={6} >
+                <Input placeholder="Nome" />
+              </Col>
+              <Col lg={6} >
                 <Select
                   style={{ width: '100%' }}
                   placeholder="Habilidade"

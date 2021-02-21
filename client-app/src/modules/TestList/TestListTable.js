@@ -50,9 +50,14 @@ export default function TestListTable({ data, showDetail }) {
       title: '',
       dataIndex: 'id',
       render: text => (
-        <Button type="link" onClick={() => onShowDetail(text)}>
-          Faz test
+        <span>
+          <Button type="link" onClick={() => onShowDetail(text)}>
+            Edit
         </Button>
+          <Button type="link" onClick={() => onShowDetail(text)}>
+            Delete
+        </Button>
+        </span>
       )
     }
   ]

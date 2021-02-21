@@ -167,7 +167,7 @@ export default function CreateTest() {
                                         onClick={func.add}
                                         block icon={<PlusOutlined />}
                                       >
-                                        Add answer
+                                        Thêm đáp án
                                       </Button>
                                       <Form.ErrorList errors={err.errors} />
                                     </Item>
@@ -181,7 +181,7 @@ export default function CreateTest() {
                     ))}
                     <Item>
                       <Button type="dashed" onClick={add} block icon={<PlusOutlined />}>
-                        Add question
+                        Thêm câu hỏi
                       </Button>
                       <Form.ErrorList errors={errors} />
                     </Item>
